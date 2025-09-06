@@ -4,15 +4,15 @@ import InputAuth from "@/components/atom/inputs/InputAuth";
 import ButtonAuth from "@/components/atom/buttons/ButtonAuth";
 import LinkAuthText from "@/components/atom/Typography/LinkAuthText";
 
-export default function SignInForm({ switchToSignUp, onForgotPassword  }) {
+export default function ForgotPasswordForm({ switchToSignIn }) {
   const [form, setForm] = useState({
     phone: "",
-    password: "",
+    verificationCode: "",
   });
 
   return (
     <div className="flex flex-col gap-3">
-      <h2 className="text-xl font-bold mb-2">ورود</h2>
+      <h2 className="text-xl font-bold mb-2">فراموشی رمز عبور</h2>
       <InputAuth
         label="شماره تماس"
         type="tel"
@@ -20,14 +20,14 @@ export default function SignInForm({ switchToSignUp, onForgotPassword  }) {
         onChange={(e) => setForm({ ...form, phone: e.target.value })}
       />
       <InputAuth
-        label="رمز عبور"
-        type="password"
-        value={form.password}
-        onChange={(e) => setForm({ ...form, password: e.target.value })}
+        label="کد تایید"
+        type="text"
+        value={form.verificationCode}
+        onChange={(e) => setForm({ ...form, verificationCode: e.target.value })}
       />
-      <ButtonAuth>ورود</ButtonAuth>
-      <LinkAuthText text="فراموشی رمز؟" onClick={onForgotPassword} />
-      <LinkAuthText text="ثبت‌ نام" onClick={switchToSignUp} />
+      <ButtonAuth>تایید و دریافت رمز جدید</ButtonAuth>
+
+      <LinkAuthText text="بازگشت به ورود" onClick={switchToSignIn} />
     </div>
   );
 }

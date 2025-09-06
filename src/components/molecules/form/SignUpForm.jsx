@@ -15,16 +15,10 @@ export default function SignUpForm({ switchToSignIn }) {
     <div className="flex flex-col gap-3">
       <h2 className="text-xl font-bold mb-2">ثبت نام</h2>
       <InputAuth
-        label="یوزرنیم"
+        label="نام کاریری"
         type="text"
         value={form.username}
         onChange={(e) => setForm({ ...form, username: e.target.value })}
-      />
-      <InputAuth
-        label="شماره تماس"
-        type="tel"
-        value={form.phone}
-        onChange={(e) => setForm({ ...form, phone: e.target.value })}
       />
       <InputAuth
         label="رمز عبور"
@@ -32,8 +26,14 @@ export default function SignUpForm({ switchToSignIn }) {
         value={form.password}
         onChange={(e) => setForm({ ...form, password: e.target.value })}
       />
+      <InputAuth
+        label="شماره تماس"
+        type="tel"
+        value={form.phone}
+        onChange={(e) => setForm({ ...form, phone: e.target.value })}
+      />
       <ButtonAuth>ثبت نام</ButtonAuth>
-      <LinkAuthText text="قبلا ثبت‌نام کردی؟" onClick={switchToSignIn} />
+      <LinkAuthText text="ورود" onClick={switchToSignIn} />
     </div>
   );
 }
