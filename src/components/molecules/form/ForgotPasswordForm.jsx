@@ -15,7 +15,7 @@ export default function ForgotPasswordForm({ switchToSignIn }) {
       <h2 className="text-xl font-bold mb-2">فراموشی رمز عبور</h2>
       <InputAuth
         label="شماره تماس"
-        type="tel"
+        type="number"
         value={form.phone}
         onChange={(e) => setForm({ ...form, phone: e.target.value })}
       />

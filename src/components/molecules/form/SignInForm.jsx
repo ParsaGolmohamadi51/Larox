@@ -15,7 +15,7 @@ export default function SignInForm({ switchToSignUp, onForgotPassword  }) {
       <h2 className="text-xl font-bold mb-2">ورود</h2>
       <InputAuth
         label="شماره تماس"
-        type="tel"
+        type="number"
         value={form.phone}
         onChange={(e) => setForm({ ...form, phone: e.target.value })}
       />

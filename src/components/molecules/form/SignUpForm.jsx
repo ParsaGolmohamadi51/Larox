@@ -28,7 +28,7 @@ export default function SignUpForm({ switchToSignIn }) {
       />
       <InputAuth
         label="شماره تماس"
-        type="tel"
+        type="number"
         value={form.phone}
         onChange={(e) => setForm({ ...form, phone: e.target.value })}
       />
