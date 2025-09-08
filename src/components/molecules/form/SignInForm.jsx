@@ -3,12 +3,22 @@ import { useState } from "react";
 import InputAuth from "@/components/atom/inputs/InputAuth";
 import ButtonAuth from "@/components/atom/buttons/ButtonAuth";
 import LinkAuthText from "@/components/atom/Typography/LinkAuthText";
+import { loginUser } from "@/services/loginService";
 
-export default function SignInForm({ switchToSignUp, onForgotPassword  }) {
+export default function SignInForm({ switchToSignUp, onForgotPassword }) {
   const [form, setForm] = useState({
     phone: "",
     password: "",
   });
+
+  const handleLogin = async () => {
+    try {
+      const result = await loginUser(form.phone, form.password);
+      console.log("نتیجه ورود:", result);
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
 
   return (
     <div className="flex flex-col gap-3">
@@ -25,7 +35,7 @@ export default function SignInForm({ switchToSignUp, onForgotPassword  }) {
         value={form.password}
         onChange={(e) => setForm({ ...form, password: e.target.value })}
       />
-      <ButtonAuth>ورود</ButtonAuth>
+      <ButtonAuth onClick={handleLogin}>ورود</ButtonAuth>
       <LinkAuthText text="فراموشی رمز؟" onClick={onForgotPassword} />
       <LinkAuthText text="ثبت‌ نام" onClick={switchToSignUp} />
     </div>

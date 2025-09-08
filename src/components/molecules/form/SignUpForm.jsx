@@ -3,7 +3,7 @@ import { useState } from "react";
 import InputAuth from "@/components/atom/inputs/InputAuth";
 import ButtonAuth from "@/components/atom/buttons/ButtonAuth";
 import LinkAuthText from "@/components/atom/Typography/LinkAuthText";
-import { registerUser } from "@/services/authService";
+import { registerUser } from "@/services/registrationService";
 
 export default function SignUpForm({ switchToSignIn }) {
   const [form, setForm] = useState({
