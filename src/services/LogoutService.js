@@ -1,3 +1,5 @@
+import axios from "axios";
+
 export const logoutUser = async () => {
   try {
     const token = localStorage.getItem("token");
@@ -6,24 +8,26 @@ export const logoutUser = async () => {
       throw new Error("توکن وجود ندارد. کاربر لاگین نیست.");
     }
 
-    const response = await fetch("https://larux.seffeh.ir/api/v1/auth/logout", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    });
-
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(errorData.message || "خروج ناموفق بود");
-    }
+    const response = await axios.post(
+      "https://larux.seffeh.ir/api/v1/auth/logout",
+      {},
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
 
     localStorage.removeItem("token");
     sessionStorage.clear();
 
     return true;
   } catch (error) {
-    throw error;
+    if (error.response && error.response.data) {
+      throw new Error(error.response.data.message || "خروج ناموفق بود");
+    } else {
+      throw error;
+    }
   }
 };

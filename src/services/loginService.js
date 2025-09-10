@@ -1,21 +1,20 @@
+import axios from "axios";
+
 export const loginUser = async (phone, password) => {
   const data = { phone, password };
 
   try {
-    const response = await fetch("https://larux.seffeh.ir/api/v1/auth/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
+    const response = await axios.post(
+      "https://larux.seffeh.ir/api/v1/auth/login",
+      data,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
 
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(errorData.message || "خطا در ارسال درخواست");
-    }
-
-    const result = await response.json();
+    const result = response.data;
 
     if (result.data?.auth) {
       localStorage.setItem("token", result.data.auth);
@@ -28,6 +27,10 @@ export const loginUser = async (phone, password) => {
 
     return result;
   } catch (error) {
-    throw error;
+    if (error.response && error.response.data) {
+      throw new Error(error.response.data.message || "خطا در ارسال درخواست");
+    } else {
+      throw error;
+    }
   }
 };

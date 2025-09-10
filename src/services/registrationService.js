@@ -1,17 +1,23 @@
+import axios from "axios";
+
 export async function registerUser(formData) {
-  const response = await fetch("https://larux.seffeh.ir/api/v1/auth/register", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(formData),
-  });
+  try {
+    const response = await axios.post(
+      "https://larux.seffeh.ir/api/v1/auth/register",
+      formData,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
 
-  const data = await response.json();
-
-  if (!response.ok) {
-    throw new Error(data.message || "خطا در ثبت نام");
+    return response.data;
+  } catch (error) {
+    if (error.response && error.response.data) {
+      throw new Error(error.response.data.message || "خطا در ثبت نام");
+    } else {
+      throw error;
+    }
   }
-
-  return data;
 }
