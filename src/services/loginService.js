@@ -16,6 +16,16 @@ export const loginUser = async (phone, password) => {
     }
 
     const result = await response.json();
+
+    if (result.data?.auth) {
+      localStorage.setItem("token", result.data.auth);
+      console.log("توکن ذخیره شد:", result.data.auth);
+    } else {
+      console.log("توکنی در پاسخ نبود");
+    }
+
+    console.log("توکن از localStorage:", localStorage.getItem("token"));
+
     return result;
   } catch (error) {
     throw error;

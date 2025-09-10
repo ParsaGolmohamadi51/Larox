@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
-import InputAuth from "@/components/atom/inputs/InputAuth";
-import ButtonAuth from "@/components/atom/buttons/ButtonAuth";
+import InputAuth from "@/components/atom/inputs/AuthInput";
+import ButtonAuth from "@/components/atom/buttons/AuthButton";
 import LinkAuthText from "@/components/atom/Typography/LinkAuthText";
 import { registerUser } from "@/services/registrationService";
 
@@ -69,8 +69,10 @@ export default function SignUpForm({ switchToSignIn }) {
         password: "",
         password_confirmation: "",
       });
-    } catch (err) {
 
+      if (switchToSignIn) switchToSignIn();
+
+    } catch (err) {
       if (err.message.includes("Failed to fetch")) {
         setError("این شماره قبلا ثبت نام کرده است یا مشکل شبکه وجود دارد.");
       } else {

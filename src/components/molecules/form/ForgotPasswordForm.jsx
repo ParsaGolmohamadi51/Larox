@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
-import InputAuth from "@/components/atom/inputs/InputAuth";
-import ButtonAuth from "@/components/atom/buttons/ButtonAuth";
+import InputAuth from "@/components/atom/inputs/AuthInput";
+import ButtonAuth from "@/components/atom/buttons/AuthButton";
 import LinkAuthText from "@/components/atom/Typography/LinkAuthText";
 
 export default function ForgotPasswordForm({ switchToSignIn }) {
