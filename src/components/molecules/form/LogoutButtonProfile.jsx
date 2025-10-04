@@ -1,5 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
+import Button from "@/components/atom/buttons/ProfileButton";
 import { logoutUser } from "@/services/LogoutService";
 
 export default function LogoutButton() {
@@ -16,11 +17,8 @@ export default function LogoutButton() {
   };
 
   return (
-    <button
-      onClick={handleLogout}
-      className="px-4 py-2 rounded-lg bg-red-600 text-white hover:bg-red-700 transition"
-    >
-      خروج
-    </button>
+    <Button onClick={handleLogout} className="bg-red-600 hover:bg-red-700">
+      خروج از حساب کاربری
+    </Button>
   );
 }

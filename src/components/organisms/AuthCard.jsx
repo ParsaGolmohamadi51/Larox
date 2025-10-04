@@ -5,7 +5,7 @@ import SignInForm from "@/components/molecules/form/SignInForm";
 import ForgotPasswordForm from "@/components/molecules/form/ForgotPasswordForm";
 
 export default function AuthCard() {
-  const [mode, setMode] = useState("signup");
+  const [mode, setMode] = useState("signin");
 
   return (
     <div className="max-w-sm mx-auto mt-20 bg-white shadow-lg rounded-2xl p-6">
